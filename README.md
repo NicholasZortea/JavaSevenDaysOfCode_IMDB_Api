@@ -6,11 +6,11 @@
 Este projeto foi feito com base no desafio do #7DaysOfCode em Java, no qual o objetivo inicial é o de gerar uma página html com os top 250 filmes fornecidos pela API do IMDB
 
 <h1 allign="center"> Classes e tecnologias utilizadas </h1>
-Para realizar a requisição a API do IMDB foram utilizadas as classes <strong>URI , HttpClient, HttpRequest, HttpResponse</strong>;
-Para parsear o arquivo json retornado dessa requisição, fiz uso de <strong> regex, patterns e matchers</strong>;
-Para gerar o html foram utilizadas as classes <strong>PrintWriter, FileWriter</strong>;
-Para a estilização do html fiz uso de <strong>BootStrap</strong> onde utilizei os cards para criar os filmes;
+Para realizar a requisição a API do IMDB foram utilizadas as classes <strong>URI , HttpClient, HttpRequest, HttpResponse</strong>;<br>
+Para parsear o arquivo json retornado dessa requisição, fiz uso de <strong> regex, patterns e matchers</strong>;<br>
+Para gerar o html foram utilizadas as classes <strong>PrintWriter, FileWriter</strong>;<br>
+Para a estilização do html fiz uso de <strong>BootStrap</strong> onde utilizei os cards para criar os filmes;<br>
 
 <h1 allign="center"> Futuras implementações </h1>
-Ainda preciso implementar a opção de ordenar os filmes por um critério diferente do rank fornecido pelo imdb, como ordenar por mais votações;
-Preciso melhorar a estilização dos cards, visto que eles estão com o layout em grid, mas estão um pouco bugados e também preciso deixar a página como um todo mais bonita;
+Ainda preciso implementar a opção de ordenar os filmes por um critério diferente do rank fornecido pelo imdb, como ordenar por mais votações;<br>
+Preciso melhorar a estilização dos cards, visto que eles estão com o layout em grid, mas estão um pouco bugados e também preciso deixar a página como um todo mais bonita;<br>
