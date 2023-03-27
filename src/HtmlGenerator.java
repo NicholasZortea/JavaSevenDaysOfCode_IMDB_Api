@@ -12,6 +12,8 @@ public class HtmlGenerator {
                    <style>
                    body{
                     background-color:gray;
+                    display:flex;
+                    flex-wrap: wrap;
                    }
                    .card-body{
                    background-color:black;
@@ -35,12 +37,9 @@ public class HtmlGenerator {
         writer.write("<html>");
         writer.write(head);
         writer.write("<body>");
-        writer.write("<div class=\"container\">\n" +
-                "           <div class=\"row row-cols-5\">\n");
         filmes.forEach( (filme) -> {
 
-            writer.write("<div class=\"col\" style=\"padding-right:1rem; padding-bottom:1rem\">\n"+
-                    "           <div class=\"card h-100\" style=\"width: 15rem\">\n" +
+            writer.write("           <div class=\"card\" style=\"width: 19rem; margin: 1rem\">\n" +
                     "               <img src="+filme.getImagem()+"\" class=\"card-img-top\" alt=\"...\">\n" +
                     "               <div class=\"card-body\">\n" +
                     "                    <h5 class=\"card-title text-center\">"+filme.getTitulo()+"</h5>\n" +
@@ -52,8 +51,6 @@ public class HtmlGenerator {
                     "       </div>\n");
 
         });
-        writer.write("     </div>\n" +
-                "        </div>\n");
         writer.write("<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN\" crossorigin=\"anonymous\"></script>");
         writer.write("\n");
         writer.write("</body>");
