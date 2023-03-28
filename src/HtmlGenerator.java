@@ -18,10 +18,10 @@ public class HtmlGenerator {
                    .card-body{
                    background-color:black;
                    color:white;
-                   border-radius:none;
+                   border-radius:0;
                    }
                    .card{
-                   border-radius:none;
+                   border-radius:0;
                    }
                    
                    </style>
@@ -34,23 +34,22 @@ public class HtmlGenerator {
     }
 
     public void generate(List<Movie> filmes){
-        writer.write("<html>");
+        writer.write("<!DOCTYPE html> \n");
+        writer.write("<html lang=\"en\"> \n");
         writer.write(head);
-        writer.write("<body>");
+        writer.write("<body> \n");
+
         filmes.forEach( (filme) -> {
+            writer.write("<div class=\"card\" style=\"width: 19rem; margin: 1rem\">\n" +
+                    "           <img src=\""+filme.getImagem()+"\" class=\"card-img-top\" alt=\"...\">\n" +
+                    "           <div class=\"card-body\">\n" +
+                    "                <h5 class=\"card-title text-center\">"+filme.getTitulo()+"</h5>\n" +
+                    "                <p class=\"card-text\" style=\"margin-bottom:2px\">"+"Rank: "+ filme.getRank()+"</p>\n" +
+                    "                <p class=\"card-text\" style=\"margin-bottom:2px\">"+"Ano: "+ filme.getAno()+"</p>\n" +
+                    "                <p class=\"card-text\" style=\"margin-bottom:2px\">"+"Nota: "+ filme.getImdbRating()+"</p>\n" +
+                    "            </div>\n" +
+                    "       </div>\n");});
 
-            writer.write("           <div class=\"card\" style=\"width: 19rem; margin: 1rem\">\n" +
-                    "               <img src="+filme.getImagem()+"\" class=\"card-img-top\" alt=\"...\">\n" +
-                    "               <div class=\"card-body\">\n" +
-                    "                    <h5 class=\"card-title text-center\">"+filme.getTitulo()+"</h5>\n" +
-                    "                    <p class=\"card-text\" style=\"margin-bottom:2px\">"+"Rank: "+ filme.getRank()+"</p>\n" +
-                    "                    <p class=\"card-text\" style=\"margin-bottom:2px\">"+"Ano: "+ filme.getAno()+"</p>\n" +
-                    "                    <p class=\"card-text\" style=\"margin-bottom:2px\">"+"Nota: "+ filme.getImdbRating()+"</p>\n" +
-                    "                </div>\n" +
-                    "            </div>\n"+
-                    "       </div>\n");
-
-        });
         writer.write("<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN\" crossorigin=\"anonymous\"></script>");
         writer.write("\n");
         writer.write("</body>");
