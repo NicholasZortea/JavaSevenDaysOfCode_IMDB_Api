@@ -12,7 +12,9 @@ Para gerar o html foram utilizadas as classes <strong>PrintWriter, FileWriter</s
 Para a estilização do html fiz uso de <strong>BootStrap</strong> onde utilizei os cards para criar os filmes;<br>
 
 <h1 allign="center"> Futuras implementações </h1>
-Ainda preciso implementar a opção de ordenar os filmes por um critério diferente do rank fornecido pelo imdb, como ordenar por mais votações; - [x] Concluído
+Ainda preciso implementar a opção de ordenar os filmes por um critério diferente do rank fornecido pelo imdb, como ordenar por mais votações;
+- [x] Concluído
 <br>
-Preciso melhorar a estilização dos cards, visto que eles estão com o layout em grid, mas estão um pouco bugados e também preciso deixar a página como um todo mais bonita; - [x] Concluído
-<br>
+Preciso melhorar a estilização dos cards, visto que eles estão com o layout em grid, mas estão um pouco bugados e também preciso deixar a página como um todo mais bonita;
+- [x] Concluído
+
