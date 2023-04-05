@@ -1,4 +1,9 @@
-public class Movie {
+import javax.swing.text.AbstractDocument;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+
+public class Movie implements Comparable<Movie> {
 
     private String id;
     private String rank;
@@ -110,5 +115,29 @@ public class Movie {
         System.out.println("Crew: " + this.getCrew());
         System.out.println("ImdbRating: " + this.getImdbRating());
         System.out.println("ImdbRatingCount: " + this.getImdbRatingCount());
+    }
+
+    public void addMovies(Matcher ID, Matcher RANK, Matcher TITLE, Matcher FULLTITLE, Matcher YEAR, Matcher IMAGE, Matcher CREW, Matcher IMDBRATING, Matcher IMDBRATINGCOUNT, List<Movie> filmes, String response){
+        while (ID.find() && RANK.find() && TITLE.find() && FULLTITLE.find() && YEAR.find() && IMAGE.find() && CREW.find() && IMDBRATING.find() && IMDBRATINGCOUNT.find()) {
+            String id = response.substring(ID.start() + 6, ID.end() - 2);
+            String rank = response.substring(RANK.start() + 8, RANK.end() - 2);
+            String titulo = response.substring(TITLE.start() + 9, TITLE.end() - 13);
+            String tituloCompleto = response.substring(FULLTITLE.start() + 13, FULLTITLE.end() - 8);
+            String ano = response.substring(YEAR.start() + 8, YEAR.end() - 1);
+            String imagem = response.substring(IMAGE.start(), IMAGE.end());
+            String crew = response.substring(CREW.start() +7 , CREW.end()-1);
+            String imdbRating = response.substring(IMDBRATING.start() +13 , IMDBRATING.end() -1 );
+            String imdbRatingCount = response.substring(IMDBRATINGCOUNT.start() +18 , IMDBRATINGCOUNT.end() -1);
+            Movie movie = new Movie(id, rank, titulo, tituloCompleto, ano, imagem, crew, imdbRating, imdbRatingCount);
+            filmes.add(movie);
+        }
+
+    }
+
+
+
+    @Override
+    public int compareTo(Movie movie) {
+        return Integer.parseInt(this.getImdbRatingCount()) - Integer.parseInt(movie.getImdbRatingCount());
     }
 }

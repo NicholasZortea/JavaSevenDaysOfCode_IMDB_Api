@@ -1,16 +1,16 @@
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.regex.*;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 public class Main {
     public static void main(String[] args) throws IOException, InterruptedException {
-        //cria o objeto que faz a requisição ao imdb
+
         Scanner scanner = new Scanner(System.in);
         System.out.println("Digite a chave da api:");
         String key = scanner.next();
+
+        //cria o objeto que faz a requisição ao imdb
         ImdbRequest requisicao = new ImdbRequest(key,"https://imdb-api.com/en/API/Top250Movies/");
         String response = requisicao.RetornaCorpoJson(requisicao.getKey(),requisicao.getUrl());
 
@@ -18,13 +18,10 @@ public class Main {
         //nome do arquivo
         String nomeArquivoHtml = "saidaEmHTML.html";
         FileWriter fileWriter = new FileWriter(nomeArquivoHtml);
+
         //cria o print writer
         PrintWriter printWriter = new PrintWriter(fileWriter);
         HtmlGenerator htmlGenerator = new HtmlGenerator(printWriter);
-
-
-
-
 
         //cria o objeto responsável por receber o padrão regex e retornar o matcher
         MovieAttributesRegex atributosRegex = new MovieAttributesRegex(response);
@@ -43,23 +40,27 @@ public class Main {
         //cria o array de filmes
         List<Movie> filmes = new ArrayList<Movie>();
 
-            while (ID.find() && RANK.find() && TITLE.find() && FULLTITLE.find() && YEAR.find() && IMAGE.find() && CREW.find() && IMDBRATING.find() && IMDBRATINGCOUNT.find()) {
-                 String id = response.substring(ID.start() + 6, ID.end() - 2);
-                 String rank = response.substring(RANK.start() + 8, RANK.end() - 2);
-                 String titulo = response.substring(TITLE.start() + 9, TITLE.end() - 13);
-                 String tituloCompleto = response.substring(FULLTITLE.start() + 13, FULLTITLE.end() - 8);
-                 String ano = response.substring(YEAR.start() + 8, YEAR.end() - 1);
-                 String imagem = response.substring(IMAGE.start(), IMAGE.end());
-                 String crew = response.substring(CREW.start() +7 , CREW.end()-1);
-                 String imdbRating = response.substring(IMDBRATING.start() +13 , IMDBRATING.end() -1 );
-                 String imdbRatingCount = response.substring(IMDBRATINGCOUNT.start() +18 , IMDBRATINGCOUNT.end() -1 );
-                 Movie movie = new Movie(id, rank, titulo, tituloCompleto, ano, imagem, crew, imdbRating, imdbRatingCount);
-                 filmes.add(movie);
-            }
+        //cria o objeto que irá adicionar os filmes no arraylist "filmes"
+        Movie ObjetoParaAdicionarOsFilmes = new Movie();
+        ObjetoParaAdicionarOsFilmes.addMovies(ID, RANK, TITLE, FULLTITLE, YEAR, IMAGE, CREW, IMDBRATING, IMDBRATINGCOUNT, filmes, response);
 
-            htmlGenerator.generate(filmes);
-            printWriter.close();
-            filmes.forEach( (movies) -> movies.getOutputAttributes() );
+        System.out.println("Deseja ordenar por contagem ou por nota os filmes? Digite \"n\" para notas ou \"c\" para contagem");
+        String resposta = scanner.next();
+        if(resposta.equals("c")) {
+            try {
+                Collections.sort(filmes, Comparator.reverseOrder());
+            } catch (NumberFormatException ex) {
+                System.out.println("Deu erro ao tentar utilizar o sort");
+                ex.printStackTrace();
+            }
+        }else if(resposta.equals("n")){
+
+        }else{
+            System.out.println("Essa opcao nao existe");
+        }
+        htmlGenerator.generate(filmes);
+        printWriter.close();
+        filmes.forEach( (movies) -> movies.getOutputAttributes() );
 
 
     }
